@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+from astropy.io import fits
+import os
+import shutil
+
+os.chdir(os.path.dirname('/Users/bmalko/Desktop/313data/ut20170110_geminiN/copy/313P/'))
+
+
+for filename in os.listdir('.'):
+    if '.fits' not in filename:
+        print('not fits')
+        continue
+
+    hdu = fits.open(filename)[0]
+    print(filename)
+
+    if hdu.header['FILTER2'] == 'Sloan_r':
+        print('Sloan r')
+        filter_r = hdu.header['FILTER2'].replace(' ','')
+        print('Sloan_r')
+        try:
+            os.mkdir(filter_r)
+        except OSError:
+            print ("Creation of the directory %s failed" % filter_r)
+        else:
+             print ("Successfully created the directory %s " % filter_r)
+
+        shutil.move(filename, filter_r)
+
+    if hdu.header['FILTER2'] == 'Sloan_g':
+        print('Sloan g')
+        filter_g = hdu.header['FILTER2'].replace(' ','')
+        print('Sloan_g')
+        try:
+            os.mkdir(filter_g)
+        except OSError:
+            print ("Creation of the directory %s failed" % filter_g)
+        else:
+             print ("Successfully created the directory %s " % filter_g)
+
+        shutil.move(filename, filter_g)
+
+    if hdu.header['FILTER2'] == 'WB4800-7800':
+        print('WB4800-7800')
+        filter_w = hdu.header['FILTER2'].replace(' ','')
+        print('WB4800-7800')
+        try:
+            os.mkdir(filter_w)
+        except OSError:
+            print ("Creation of the directory %s failed" % filter_w)
+        else:
+             print ("Successfully created the directory %s " % filter_w)
+
+        shutil.move(filename, filter_w)
+
+    if hdu.header['FILTER2'] == 'r.MP9602':
+        print('r.MP9602')
+        filter_rmp = hdu.header['FILTER2'].replace(' ','')
+        print('r.MP9602')
+        try:
+            os.mkdir(filter_rmp)
+        except OSError:
+            print ("Creation of the directory %s failed" % filter_rmp)
+        else:
+             print ("Successfully created the directory %s " % filter_rmp)
+
+        shutil.move(filename, filter_rmp)
+
+    if hdu.header['FILTER2'] == 'r_G0303':
+        print('r_G0303')
+        filter_rg = hdu.header['FILTER2'].replace(' ','')
+        print('r_G0303')
+        try:
+            os.mkdir(filter_rg)
+        except OSError:
+            print ("Creation of the directory %s failed" % filter_rg)
+        else:
+             print ("Successfully created the directory %s " % filter_rg)
+
+        shutil.move(filename, filter_rg)
