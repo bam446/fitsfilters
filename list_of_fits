@@ -1,0 +1,64 @@
+from astropy.io import fits
+import os
+import shutil
+
+os.chdir(os.path.dirname('/Users/bmalko/Desktop/makelog/20191025/proc/'))
+
+object = []
+RSpup = []
+k = []
+k2 = []
+h5 = []
+g1 = []
+s1 = [] 
+
+#RSPup = '/Desktop/dest_folder'
+
+for filename in os.listdir('.'):
+    if '.fits' not in filename:
+        continue
+
+    hdu = fits.open(filename)[0]
+
+    if hdu.header['IMAGETYP'] == 'object':
+
+         obj_name = hdu.header['OBJECT'].replace(' ','')
+          # use os.mkdir(obj_name) to make directory for obj_name if it doesnt exit
+          # mv filename to new obj_name directory
+
+         frame = hdu.data
+         object.append(frame)
+
+#     if hdu.header['OBJECT'] == 'RS Pup':
+#          frame = hdu.data
+#          RSpup.append(frame)
+
+#     for f in hdu:
+#         shutil.move(hdu+f, RSPup)
+
+#    with open('Rs_pup.txt', 'w') as filehandle:
+#        for listitem in RSpup:
+#            filehandle.write('%s\n' % listitem)
+    
+#     if hdu.header['OBJECT'] == '4188 Kitezh':
+#          frame = hdu.data
+#          k.append(frame)
+
+#     if hdu.header['OBJECT'] == '2566 Kirghizia':
+#          frame = hdu.data
+#          k2.append(frame)
+    
+#     if hdu.header['OBJECT'] == '5037 Habing':
+#          frame = hdu.data
+#          h5.append(frame)
+
+#     if hdu.header['OBJECT'] == '1385 Gelria':
+#          frame = hdu.data
+#          g1.append(frame)
+
+#     if hdu.header['OBJECT'] == '155P Shoemaker':
+#         frame = hdu.data
+#         s1.append(frame)
+# #print(object)
+# print(RSpup)
+        
